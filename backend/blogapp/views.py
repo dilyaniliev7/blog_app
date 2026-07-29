@@ -5,6 +5,20 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from .models import Blog
+from rest_framework.pagination import PageNumberPagination
+
+
+class BlogListPagination(PageNumberPagination):
+    page_size =3
+
+
+@api_view(["GET"])
+def blog_list(request):
+    blogs = Blog.objects.all()
+    paginator = BlogListPagination()
+    paginated_blogs = paginator.paginate_queryset(blogs, request)
+    serializer = BlogSerializer(paginated_blogs, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 @api_view(["POST"])
 def register_user(request):
@@ -36,12 +50,6 @@ def create_blog(request):
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-@api_view(["GET"])
-def blog_list(request):
-    blogs = Blog.objects.all()
-    serializer = BlogSerializer(blogs, many=True)
-    return Response(serializer.data)
 
 
 @api_view(["POST"])
