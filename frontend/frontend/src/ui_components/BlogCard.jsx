@@ -1,6 +1,7 @@
 import Badge from './Badge'
 import CardFooter from './CardFooter'
 import thumbnail from '../images/design_vii.jpg'
+import { Link } from "react-router-dom"
 
 const BlogCard = () => {
     return (
@@ -14,9 +15,12 @@ const BlogCard = () => {
 
             <Badge />
 
-            <h3 className="font-semibold leading-normal text-[#181A2A] mb-0 dark:text-white">
-                Build and Ecommerce Web App with Django and React
-            </h3>
+            <Link to="/detail">
+
+                <h3 className="font-semibold leading-normal text-[#181A2A] mb-0 dark:text-white">
+                    Build and Ecommerce Web App with Django and React
+                </h3>
+            </Link>
         <CardFooter />
     </div>
     )
