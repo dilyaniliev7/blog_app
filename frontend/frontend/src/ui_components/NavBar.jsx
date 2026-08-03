@@ -4,7 +4,7 @@ import ResponsiveNavBar from "./ResponsiveNavBar"
 import { useState } from 'react';
 import { Link, NavLink } from "react-router-dom"
 
-const NavBar = () => {
+const NavBar = ({darkMode, handleDarkMode}) => {
 
     const [showNavBar, setShowNavBar] = useState(false)
 
@@ -26,7 +26,7 @@ const NavBar = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-            <Switch />
+            <Switch onCheckedChange={handleDarkMode} checked={darkMode}/>
             <FaHamburger className="text-2xl cursor-pointer hidden max-md:block dark:text-white" onClick={() => setShowNavBar(curr => !curr)}/>
         </div>
         </nav>
