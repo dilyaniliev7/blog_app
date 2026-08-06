@@ -7,6 +7,8 @@ const BlogContainer = ({isPending, blogs}) => {
         return <Spinner />
     }
 
+    const blogList = Array.isArray(blogs) ? blogs : blogs?.results || []
+
     return (
         <section className="padding-x py-6 max-container">
             <h2 className="font-semibold  text-xl mb-6 dark:text-white text-center">
@@ -14,7 +16,7 @@ const BlogContainer = ({isPending, blogs}) => {
             </h2>
 
             <div className="flex items-center gap-6 justify-center flex-wrap">
-                {blogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)}
+                {blogList.map((blog) => <BlogCard key={blog.id} blog={blog} />)}
 
             </div>
         </section>
