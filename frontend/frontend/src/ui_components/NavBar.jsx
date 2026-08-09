@@ -20,7 +20,14 @@ const NavBar = ({darkMode, handleDarkMode}) => {
                 <NavLink to="/profile" className={({isActive}) => isActive ? "active" : ""}>Hi, Dilyan</NavLink>
             </li>
             <li>Logout</li>
-            <li>Login</li>
+            <li>
+                <NavLink
+                    to="/signin"
+                    className={({ isActive }) => (isActive ? "active": "")}
+                >
+                    Login
+                </NavLink>
+            </li>
             <li>
                 <NavLink
                     to="/signup"
@@ -29,8 +36,14 @@ const NavBar = ({darkMode, handleDarkMode}) => {
                     Register
                 </NavLink>
             </li>
-            <li>Register</li>
-            <li className="font-semibold cursor-pointer">Create post</li>
+            <li className="font-semibold cursor-pointer">
+                <NavLink
+                    to="/create"
+                    className={({ isActive }) => (isActive ? "active": "")}
+                >
+                    Create Post
+                </NavLink>
+            </li>
         </ul>
 
         <div className="flex items-center gap-4">

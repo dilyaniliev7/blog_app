@@ -1,13 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import NavBar from "./ui_components/NavBar"
-import Header from "./ui_components/Header"
-import BlogContainer from "./ui_components/BlogContainer"
-import Footer from "./ui_components/Footer"
 import AppLayout from "./ui_components/AppLayout"
 import HomePage from "./pages/HomePage"
 import DetailPage from "./pages/DetailPage"
-import ProfilePage from "./pages/ProfilePage"
 import SignupPage from "./pages/SignupPage"
+import LoginPage from "./pages/LoginPage"
+import CreatePostPage from "./pages/CreatePostPage"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 const queryClient = new QueryClient()
@@ -21,6 +18,8 @@ const App = () => {
                     <Route index element={<HomePage />} />
                     <Route path="blogs/:slug" element={<DetailPage />} />
                     <Route path="signup" element={<SignupPage />} />
+                    <Route path="signin" element={<LoginPage />} />
+                    <Route path="create" element={<CreatePostPage />} />
 {/*                     <Route path="profile" element={<ProfilePage />} /> */}
                 </Route>
             </Routes>
