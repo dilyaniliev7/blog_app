@@ -1,11 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { jwtDecode } from "jwt-decode"
 import Spinner from "./Spinner"
-import { Navigate } from "react-router-dom"
+import { Navigate, useLocation } from "react-router-dom"
 import api from "@/api"
 const ProtectedRoute = ({children}) => {
 
     const [isAuthorized, setIsAuthorized] = useState(null)
+    const location = useLocation()
+
+    useEffect(function(){
+        authorize().catch(() => setIsAuthorized(false)
+    }, [])
 
     async function refreshToken(){
             const refresh = localStorage.getItem("refresh")
@@ -50,7 +55,7 @@ const ProtectedRoute = ({children}) => {
 
     return (
         <>
-        {isAuthorized ? children : <Navigate to="/signin" />}
+        {isAuthorized ? children : <Navigate to="/signin" state={{from:location}} replace />}
         </>
     )
 }
