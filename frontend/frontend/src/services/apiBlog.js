@@ -56,3 +56,13 @@ export async function getUsername(){
         throw new Error(err.message)
     }
 }
+
+export async function createBlog(data){
+    try{
+        const response = await api.post("create_blog/")
+        return response.data
+    }
+    catch(err){
+       throw new Error(err.message);
+    }
+}
