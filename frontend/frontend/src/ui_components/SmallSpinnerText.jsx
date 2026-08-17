@@ -6,4 +6,4 @@ const SmallSpinnerText = ({text}) => {
     )
 }
 
-export default SmallSpinnerText
+export default SmallSpinnerText/
