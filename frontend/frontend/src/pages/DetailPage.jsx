@@ -60,7 +60,7 @@ const DetailPage = ({username, isAuthenticated}) => {
                 </p>
             </div>
         { showModal && <Modal>
-            <CreatePostPage />
+            <CreatePostPage blog={blog} />
         </Modal>}
     </>
     )
