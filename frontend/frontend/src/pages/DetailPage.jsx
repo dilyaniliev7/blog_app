@@ -11,11 +11,13 @@ import { MdDelete } from "react-icons/md";
 import Modal from "@/ui_components/Modal"
 import CreatePostPage from "./CreatePostPage"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 const DetailPage = ({username, isAuthenticated}) => {
 
     const { slug } = useParams()
     const [showModal, setShowModal] = useSate(false)
+    const navigate = useNavigate
 
     function toggleModal(){
         setShowModal(curr => !curr)
@@ -26,6 +28,29 @@ const DetailPage = ({username, isAuthenticated}) => {
         queryFn:()=>getBlog(slug),
 
     })
+
+    const blogID = blog?.id
+
+    const deleteMutation = useMutation({
+        mutationFn: (id) => deleteBlog(id),
+        onSuccess: () => {
+            toast.success("Your post has been deleted successfully!")
+            navigate("/")
+        },
+
+        onError: (err) => {
+            toast.error(err.message)
+        }
+    })
+
+    function handleDeleteBlog(){
+        const popUp = window.confirm("Are you sure you want to delete this post?")
+        if(!popUp){
+            return;
+        }
+
+        deleteMutation.mutate(blogID)
+    }
 
     if(isPending){
         return <Spinner />
@@ -45,7 +70,7 @@ const DetailPage = ({username, isAuthenticated}) => {
                         <HiPencilAlt
                             className="dark:text-white text-3xl cursor-pointer"
                         />
-                    <MdDelete className="dark:text-white text-3xl cursor-pointer" />
+                    <MdDelete onClick={handleDeleteBlog} className="dark:text-white text-3xl cursor-pointer" />
                     </span>  }
                 </div>
 
