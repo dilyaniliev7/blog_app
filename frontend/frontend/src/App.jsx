@@ -6,6 +6,7 @@ import DetailPage from "./pages/DetailPage"
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage"
 import CreatePostPage from "./pages/CreatePostPage"
+import ProfilePage from "./pages/ProfilePage"
 import { QueryClient } from "@tanstack/react-query"
 import { useState, useEffect } from 'react'
 import { getUsername } from "./services/apiBlog"
@@ -36,6 +37,7 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<AppLayout isAuthenticated={isAuthenticated} username={username} setUsername={setUsername}/>}>
                     <Route index element={<HomePage />} />
+                    <Route path="profile/:username" element={<ProfilePage />} />
                     <Route path="blogs/:slug" element={<DetailPage username={username} isAuthenticated={isAuthenticated}/>} />
                     <Route path="signup" element={<SignupPage />} />
                     <Route path="signin" element={<LoginPage setIsAuthenticated={setIsAuthenticated} setUsername={setUsername}/>} />

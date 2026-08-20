@@ -1,5 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
-from .serializers import UserRegistrationSerializer, BlogSerializer, UpdateUserProfileSerializer
+from .serializers import UserRegistrationSerializer, BlogSerializer, UpdateUserProfileSerializer, UserInfoSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -89,3 +90,11 @@ def get_username(request):
     user = request.user
     username = user.username
     return Response({"username":username})
+
+
+@api_view(["GET"])
+def get_userinfo(request, username):
+    User = get_user_model()
+    user = User.objects.get(username=username)
+    serializer = UserInfoSerializer(user)
+    return Response(serializer.data)

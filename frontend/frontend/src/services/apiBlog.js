@@ -92,3 +92,14 @@ export async function deleteBlog(id){
         throw new Error(err.message)
     }
 }
+
+
+export async function getUserInfo(username){
+    try{
+        const response = await api.get(`get_userinfo/${username}`)
+        return response.data
+    }
+    catch(err){
+        throw new Error(err.message)
+    }
+}
