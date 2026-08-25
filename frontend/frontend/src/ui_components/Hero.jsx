@@ -4,8 +4,9 @@ import { FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { FaYoutube } from "react-icons/fa";
 import { BASE_URL } from "@/api";
+import { HiPencilAlt } from "react-icons/hi";
 
-const Hero = ({userInfo}) => {
+const Hero = ({userInfo, authUsername, toggleModal}) => {
     return (
         <div className="padding-x py-9 max-container flex flex-col items-center justify-center gap-4 bg-[#F6F6F7]">
             <div className="flex gap-4">
@@ -22,6 +23,10 @@ const Hero = ({userInfo}) => {
                         {userInfo?.job_title || "Collaborator & Editor"}
                     </p>
                 </span>
+                {userInfo?.username === authUsername && ( <span>
+                    <HiPencilAlt className="dark:text-white text-2xl cursor-pointer" onClick={toggleModal}/>
+                    </span>
+                    )}
         </div>
 
         <p className="text-[#3B3C4A] text-[16px] max-md:leading-[2rem] lg:leading-normal lg:mx-[200px]">
