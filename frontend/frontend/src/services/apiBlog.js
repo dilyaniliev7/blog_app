@@ -111,7 +111,7 @@ export async function updateProfile(data){
     }
     catch(err){
         if(err.response){
-            throw new Error(err?.response?.data.message || "Failed to update profile")
+            throw new Error(err?.response?.data.username[0] || "Failed to update profile")
         }
 
         throw new Error(err.message);

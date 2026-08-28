@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-hpx4!-of%!ne(7t04&2b(evw1m$=teg^zyqnmmwdb+)(_%zdb5
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 
@@ -100,6 +100,7 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR/"static"
 
 MEDIA_URL = "img/"
 MEDIA_ROOT = BASE_DIR/"media"
